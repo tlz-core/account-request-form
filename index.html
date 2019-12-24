@@ -1,0 +1,209 @@
+<html>
+
+<head>
+  <title>Request Account</title>
+  <!-- Bootstrap core CSS -->
+  <link href="bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <h3><br>Please complete the form to request an account</h3>
+        <br />
+        <form id="requestForm">
+          <div class="form-group">
+            <label for="InputAccountType">Account Type</label>
+            <select class="form-control" id="InputAccountType">
+              <option selected="selected">--select one--</option>
+              <option value="Application">Application</option>
+              <option value="Sandbox">Sandbox</option>
+              <option value="Core">Core</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="InputAccountSubType">Environment Type</label>
+            <select class="form-control" id="InputAccountSubType" disabled>
+              <option value="NA" selected="selected">--select one--</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="InputLineOfBusiness">Line of Business</label>
+            <select required class="form-control" id="InputLineOfBusiness">
+              <option value='NA' selected="selected">--select one--</option>
+              <option value="Core">Core</option>
+              <option value="FN">Finance</option>
+              <option value="Corp">Corp</option>
+              <option value="HR">HR</option>
+              <option value="POC">POC</option>
+              <option value="Unmanaged">Unmanaged</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="InputAccountPrefix">Account Name Prefix</label>
+            <select required class="form-control" id="InputAccountPrefix">
+              <option value='tlz' selected="selected">TLZ</option>
+              <option value='abc'>abc</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="InputAppName">Name</label>
+            <input required type="text"  class="form-control" id="InputAppName" placeholder="Name">
+            <small id="InputAppNameHelp" class="form-text text-muted">The actual name of resources generated will
+              differ but will be based upon this name</small>
+          </div>
+          <br />
+          <div class="form-group">
+            <label for="InputVendor">Vendor</label>
+            <select class="form-control" id="InputVendor" disabled>
+              <option value="aws" selected="selected">AWS</option>
+              <option>Azure</option>
+              <option>Google Cloud</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="InputPrimaryRegion">Region</label>
+            <select class="form-control" id="InputPrimaryRegion">
+              <option value="us-east-2" selected="selected">US-EAST-2</option>
+              <option value="us-west-2">US-WEST-2</option>
+              <option value="eu-west-3">EU-WEST-3</option>
+              <option value="ap-northeast-1">AP-NORTHEAST-1</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="InputPrimaryIP">VPC CIDR</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="InputPrimaryIP" placeholder="" disabled>
+            </div>
+          </div>
+          <div class="form-group" hidden>
+            <label for="InputSecondaryIP">Secondary VPC CIDR</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="InputSecondaryIP" placeholder="192.168.0.0/16" disabled>
+            </div>
+          </div>
+          <br />
+          <div class="form-group">
+            <label for="InputAccountEmail">Account Email address</label>
+            <input required type="email" class="form-control" id="InputAccountEmail" aria-describedby="emailHelp"
+              placeholder="account@abc.com">
+          </div>
+          <div class="form-group">
+            <label for="InputEmail">Contact Email address</label>
+            <input required type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="owner@abc.com">
+          </div>
+          <div class="form-group">
+            <label for="InputInfoSecEmail">Security Contact Email address</label>
+            <input required type="email" class="form-control" id="InputInfoSecEmail" aria-describedby="InputInfoSecEmailHelp" default_if_none="ir@abc.com" placeholder="ir@abc.com">
+            <small id="InputInfoSecEmailHelp" class="form-text text-muted">Set to cloudir@abc.com if not specified.</small>
+          </div>
+          <div class="form-group">
+            <label for="InputResponsible">Responsible Party</label>
+            <input required type="text" class="form-control" id="InputResponsible" placeholder="Enter a name">
+            <small id="InputResponsibleHelp" class="form-text text-muted">Your name or the name of the person
+              responsible for this account.</small>
+          </div>
+          <br />
+          <div class="form-group">
+            <label for="InputServiceNow">ServiceNow Ticket (REQ#)</label>
+            <input required type="text" class="form-control" id="InputServiceNow" placeholder="Enter the ServiceNow Request Number">
+          </div>
+          <div class="form-group">
+            <label for="InputCostCenter">Cost Center</label>
+            <input required type="text" class="form-control" id="InputCostCenter" aria-describedby="InputCostCenterHelp" placeholder="Enter the Cost Center" minlength="6" maxlength="255">
+            <small id="InputCostCenterHelp" class="form-text text-muted">Minimum 6 Digits (255 max)</small>
+          </div>
+          <button id="submitButton" type="submit" class="btn btn-primary">Submit</button>
+          <button id="resetButton" type="reset" class="btn btn-danger">Reset</button>
+          <div id="output" class="d-none" role="alert" style="margin-top:9px;"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <script src="aws-sdk-2.7.16.min.js"></script>
+  <script src="app.js"></script>
+  <script type="text/javascript">
+    $("#InputAccountType").change(function () {
+        var selectOne = "<option value='NA' selected disabled>--select one--</option>"
+        var val = $(this).val();
+        if (val == "Application") {
+          $("#InputAccountSubType").removeAttr("disabled");
+          $("#InputPrimaryIP").removeAttr("disabled");
+          $("#InputLineOfBusiness").removeAttr("disabled");
+          $("#InputPrimaryIP").val("");
+          // atm bc backend interfaces require a secondary IP we are going to pass in 100.64.0.0/16
+          // a discussion needs to happen regarding DR to firm up what these values should be.
+          $("#InputSecondaryIP").val("100.64.0.0/16")
+          $("#InputAccountSubType").html(selectOne + "<option value='prd'>Production</option><option value='pre-prod'>Pre-Production</option><option value='shared'>Shared-Services</option><option value='stg'>Staging</option><option value='dev'>Development</option><option value='qa'>Quality Assurance</option>")
+        } else if (val == "Sandbox") {
+          $("#InputAccountSubType").html("<option value='sbx'>Sandbox</option>");
+          $("#InputAccountSubType").attr("disabled", "true");
+          $("#InputPrimaryIP").attr("disabled", "true");
+          $("#InputLineOfBusiness").attr("disabled", "true");
+          $("#InputPrimaryIP").val("192.168.0.0/16")
+          $("#InputSecondaryIP").val("192.168.0.0/16")
+        } else {
+          $("#InputAccountSubType").html(selectOne);
+          $("#InputAccountSubType").attr("disabled", "true");
+          $("#InputPrimaryIP").attr("disabled", "true");
+          $("#InputLineOfBusiness").attr("disabled", "true");
+          $("#InputPrimaryIP").val("192.168.0.0/16")
+          $("#InputSecondaryIP").val("192.168.0.0/16")
+        }
+    });
+    //Loop through the HTML fields and capture any input elements that have an id.
+    //Return a JSON object of id:value propeties
+    var toJSONString = function (form) {
+      var obj = {};
+      var elements = form.querySelectorAll("input, select, textarea");
+      for (var i = 0; i < elements.length; ++i) {
+        var element = elements[i];
+        var name = element.id;
+        var value = element.value;
+
+        if (name) {
+          obj[name] = value;
+        }
+      }
+      return JSON.stringify(obj);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var form = document.getElementById("requestForm");
+      var output = document.getElementById("output");
+      var btn = document.getElementById('submitButton');
+      form.addEventListener("reset", function(e){
+        btn.removeAttribute("disabled")
+      });
+      form.addEventListener("submit", function (e) {
+        //Hide output and disable submit
+        output.setAttribute("class", "d-none");
+        btn.setAttribute("disabled", "true");
+        e.preventDefault();
+        //Get JSON
+        var json = toJSONString(this);
+        console.log("Generating payload from Form Data -> \n" + json);
+        submitForm(json, function (err, data) {
+          if (!err) {
+            console.log('submitted')
+            handleOutput("alert alert-success", "Success! <br/><br/> Your request has been received. You will receive an email confirmation once the request has been processed.  <br/><br/><small>Please take note of your Request ID: " +
+              JSON.stringify(data) + "</small>");
+          } else {
+            btn.removeAttribute("disabled");
+            handleOutput("alert alert-danger", "ERROR! <br/>Please check your inputs and resubmit the form!<br/>" + err)
+            console.log(err)
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
